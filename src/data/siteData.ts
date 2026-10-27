@@ -24,6 +24,11 @@ export const site = {
   },
   bio:
     'I am a Computer Engineering student with a strong interest in software development, artificial intelligence, machine learning, and data engineering. I enjoy turning ideas into practical applications by combining problem-solving, clean development practices, and user-focused design. My experience includes software quality assurance, manual and functional testing, API testing, database validation, and working with Python, SQL, JavaScript, PHP and modern web tools. I have also explored machine learning, deep learning, NLP, and AI-powered applications through academic and personal projects. I believe in continuous learning, ethical development, and building technology that solves real problems.',
+  bioParagraphs: [
+    'I am a Computer Engineering student with a strong interest in software development, artificial intelligence, machine learning, and data engineering. I enjoy turning ideas into practical applications by combining problem-solving, clean development practices, and user-focused design.',
+    'My hands-on experience includes software quality assurance, manual and functional testing, API testing with Postman, database validation, and developing with Python, SQL, JavaScript, PHP, and modern web tools.',
+    'I have also explored machine learning, deep learning, NLP, and AI-powered systems through academic and personal projects. I believe in continuous learning, clean development standards, and building technology that solves real problems.',
+  ],
 };
 
 export const skills = {

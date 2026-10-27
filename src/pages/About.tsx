@@ -1,10 +1,19 @@
 import PageShell from '@/components/PageShell';
 import SectionHeading from '@/components/SectionHeading';
-import SplitText, { Reveal } from '@/components/SplitText';
+import { Reveal } from '@/components/SplitText';
 import TiltCard from '@/components/TiltCard';
 import MagneticButton from '@/components/MagneticButton';
-import { site } from '@/data/siteData';
-import { MapPin, Mail, Code2, GraduationCap } from 'lucide-react';
+import { site, education } from '@/data/siteData';
+import {
+  MapPin,
+  Mail,
+  Code2,
+  GraduationCap,
+  BrainCircuit,
+  ShieldCheck,
+  Award,
+  Sparkles,
+} from 'lucide-react';
 
 function GithubIcon() {
   return (
@@ -13,6 +22,7 @@ function GithubIcon() {
     </svg>
   );
 }
+
 function LinkedinIcon() {
   return (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -21,6 +31,24 @@ function LinkedinIcon() {
   );
 }
 
+const pillars = [
+  {
+    icon: Code2,
+    title: 'Software Development',
+    desc: 'Full-stack web applications, clean architecture, responsive UX, and scalable API integrations.',
+  },
+  {
+    icon: BrainCircuit,
+    title: 'AI & Data Engineering',
+    desc: 'Exploring computer vision, NLP prototypes, and automated data pipelines with Python and SQL.',
+  },
+  {
+    icon: ShieldCheck,
+    title: 'Quality & Testing',
+    desc: 'Functional QA, Postman API testing, database verification, and comprehensive defect reporting.',
+  },
+];
+
 export default function About() {
   return (
     <PageShell>
@@ -28,25 +56,29 @@ export default function About() {
         <SectionHeading
           eyebrow="About Me"
           title={<>Get to know <span className="accent-text">Tejas</span></>}
+          subtitle="A deeper look into my background, engineering philosophy, and current pursuits."
         />
       </div>
 
       <div className="grid gap-10 lg:grid-cols-3">
-        {/* Profile card */}
+        {/* Profile Card */}
         <Reveal className="lg:col-span-1">
           <TiltCard className="glass sticky top-24 rounded-2xl p-6" max={4}>
-            <div className="flex h-28 w-28 items-center justify-center rounded-2xl accent-gradient font-display text-4xl font-bold text-white">
+            <div className="flex h-24 w-24 items-center justify-center rounded-2xl accent-gradient font-display text-3xl font-bold text-white shadow-lg shadow-accent/20">
               TC
             </div>
             <h3 className="mt-5 font-display text-xl font-bold">{site.name}</h3>
-            <p className="text-sm text-muted">Computer Engineering Student</p>
+            <p className="text-sm font-medium text-accent">Computer Engineering Student</p>
 
             <div className="mt-5 space-y-3 text-sm">
               <p className="flex items-center gap-2 text-muted">
                 <MapPin size={16} className="text-accent" /> {site.location}
               </p>
               {site.email && (
-                <a href={`mailto:${site.email}`} className="flex items-center gap-2 text-muted transition-colors hover:text-accent">
+                <a
+                  href={`mailto:${site.email}`}
+                  className="flex items-center gap-2 text-muted transition-colors hover:text-accent"
+                >
                   <Mail size={16} className="text-accent" /> {site.email}
                 </a>
               )}
@@ -54,55 +86,158 @@ export default function About() {
 
             <div className="mt-5 flex gap-2">
               {site.github && (
-                <a href={site.github} target="_blank" rel="noopener noreferrer" className="flex h-10 w-10 items-center justify-center rounded-xl glass transition-colors hover:text-accent" aria-label="GitHub">
+                <a
+                  href={site.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-10 w-10 items-center justify-center rounded-xl glass transition-colors hover:text-accent"
+                  aria-label="GitHub"
+                >
                   <GithubIcon />
                 </a>
               )}
               {site.linkedin && (
-                <a href={site.linkedin} target="_blank" rel="noopener noreferrer" className="flex h-10 w-10 items-center justify-center rounded-xl glass transition-colors hover:text-accent" aria-label="LinkedIn">
+                <a
+                  href={site.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-10 w-10 items-center justify-center rounded-xl glass transition-colors hover:text-accent"
+                  aria-label="LinkedIn"
+                >
                   <LinkedinIcon />
                 </a>
               )}
             </div>
 
             <div className="mt-6 border-t border-border pt-5">
-              <p className="text-xs uppercase tracking-wider text-muted">Focus Areas</p>
+              <p className="text-xs font-semibold uppercase tracking-wider text-muted">Focus Areas</p>
               <div className="mt-3 flex flex-wrap gap-2">
                 {site.hero.chips.map((c) => (
-                  <span key={c} className="rounded-full bg-surface-2 px-3 py-1 text-xs text-muted">{c}</span>
+                  <span key={c} className="rounded-full bg-surface-2 px-3 py-1 text-xs text-muted">
+                    {c}
+                  </span>
                 ))}
               </div>
             </div>
           </TiltCard>
         </Reveal>
 
-        {/* Bio */}
-        <div className="lg:col-span-2">
+        {/* Main Content Column */}
+        <div className="space-y-6 lg:col-span-2">
+          {/* Who I Am Card */}
           <Reveal>
-            <div className="glass rounded-2xl p-8">
-              <h3 className="mb-4 flex items-center gap-2 font-display text-lg font-semibold">
-                <Code2 size={20} className="text-accent" /> Who I Am
-              </h3>
-              <SplitText text={site.bio} className="text-base leading-relaxed text-fg/90" />
+            <div className="glass rounded-2xl p-7 sm:p-8">
+              <div className="mb-5 flex items-center justify-between border-b border-border/50 pb-4">
+                <h3 className="flex items-center gap-2.5 font-display text-lg font-semibold">
+                  <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent/10 text-accent">
+                    <Code2 size={18} />
+                  </span>
+                  Who I Am
+                </h3>
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-accent/10 px-3 py-1 text-xs font-medium text-accent">
+                  <Sparkles size={13} /> Passionate Builder
+                </span>
+              </div>
+
+              {/* Nicely spaced paragraphs */}
+              <div className="space-y-4 text-base leading-relaxed text-muted dark:text-fg/85">
+                {site.bioParagraphs.map((paragraph, idx) => (
+                  <p key={idx} className="leading-7">
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
+
+              {/* Core Pillars */}
+              <div className="mt-8 border-t border-border/50 pt-6">
+                <h4 className="mb-4 font-display text-xs font-semibold uppercase tracking-wider text-muted">
+                  Core Competencies
+                </h4>
+                <div className="grid gap-4 sm:grid-cols-3">
+                  {pillars.map((pillar) => {
+                    const IconComponent = pillar.icon;
+                    return (
+                      <div
+                        key={pillar.title}
+                        className="rounded-xl border border-border/60 bg-surface/50 p-4 transition-colors hover:border-accent/40"
+                      >
+                        <div className="mb-2.5 flex h-8 w-8 items-center justify-center rounded-lg bg-accent/10 text-accent">
+                          <IconComponent size={16} />
+                        </div>
+                        <h5 className="font-display text-sm font-semibold text-fg">
+                          {pillar.title}
+                        </h5>
+                        <p className="mt-1.5 text-xs leading-relaxed text-muted">
+                          {pillar.desc}
+                        </p>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
             </div>
           </Reveal>
 
+          {/* Currently & Education Card */}
           <Reveal delay={0.1}>
-            <div className="mt-6 glass rounded-2xl p-8">
-              <h3 className="mb-4 flex items-center gap-2 font-display text-lg font-semibold">
-                <GraduationCap size={20} className="text-accent" /> Currently
-              </h3>
-              <p className="text-base text-fg/90">
-                Pursuing a B.Tech in Computer Engineering, exploring the intersections of
-                software development, AI/ML, and data engineering through academic and personal projects.
-              </p>
+            <div className="glass rounded-2xl p-7 sm:p-8">
+              <div className="mb-5 flex items-center justify-between border-b border-border/50 pb-4">
+                <h3 className="flex items-center gap-2.5 font-display text-lg font-semibold">
+                  <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent/10 text-accent">
+                    <GraduationCap size={18} />
+                  </span>
+                  Currently & Education
+                </h3>
+                <span className="rounded-full bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
+                  {education.cgpa} CGPA
+                </span>
+              </div>
+
+              <div className="space-y-3">
+                <div className="flex flex-wrap items-baseline justify-between gap-2">
+                  <h4 className="font-display text-base font-semibold text-fg">
+                    {education.degree}
+                  </h4>
+                  <span className="text-xs font-medium text-muted">
+                    {education.period} ({education.expected})
+                  </span>
+                </div>
+                <p className="text-sm text-muted">{education.school}</p>
+                <p className="text-sm leading-relaxed text-muted dark:text-fg/80">
+                  Actively pursuing advanced coursework in computer algorithms, data engineering,
+                  intelligent AI/ML systems, and robust software architectures.
+                </p>
+
+                {/* Prior Academic Badges */}
+                <div className="mt-4 flex flex-wrap items-center gap-2 pt-2">
+                  <span className="text-xs font-medium text-muted">Academic Track:</span>
+                  {education.prior.map((p) => (
+                    <span
+                      key={p.label}
+                      className="inline-flex items-center gap-1.5 rounded-lg bg-surface-2 px-3 py-1 text-xs font-medium text-muted"
+                    >
+                      <Award size={13} className="text-accent" />
+                      <span>{p.label}:</span>
+                      <strong className="text-fg">{p.score}</strong>
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
           </Reveal>
 
+          {/* CTA Buttons */}
           <Reveal delay={0.15}>
-            <div className="mt-6 flex flex-wrap gap-4">
-              <MagneticButton to="/projects" variant="primary">See My Work</MagneticButton>
-              <MagneticButton to="/contact" variant="outline">Contact Me</MagneticButton>
+            <div className="flex flex-wrap items-center gap-4 pt-2">
+              <MagneticButton to="/projects" variant="primary">
+                Explore Projects
+              </MagneticButton>
+              <MagneticButton to="/experience" variant="ghost">
+                View Experience
+              </MagneticButton>
+              <MagneticButton to="/contact" variant="outline">
+                Get In Touch
+              </MagneticButton>
             </div>
           </Reveal>
         </div>

@@ -34,14 +34,33 @@ export default function SplitText({
     return () => ctx.revert();
   }, [char, delay]);
 
-  const units = char ? text.split('') : text.split(' ');
-  const sep = char ? '' : ' ';
+  if (char) {
+    const chars = text.split('');
+    return (
+      <Tag ref={ref as React.RefObject<HTMLElement>} className={className}>
+        {chars.map((c, i) => (
+          <span
+            key={i}
+            className="split-unit inline-block"
+            style={{ willChange: 'transform, opacity' }}
+          >
+            {c === ' ' ? '\u00A0' : c}
+          </span>
+        ))}
+      </Tag>
+    );
+  }
 
+  const words = text.split(/\s+/).filter(Boolean);
   return (
     <Tag ref={ref as React.RefObject<HTMLElement>} className={className}>
-      {units.map((u, i) => (
-        <span key={i} className="split-unit inline-block" style={{ willChange: 'transform, opacity' }}>
-          {u === ' ' ? '\u00A0' : u}{i < units.length - 1 ? sep : ''}
+      {words.map((word, i) => (
+        <span
+          key={i}
+          className={`split-unit inline-block ${i < words.length - 1 ? 'mr-[0.3em]' : ''}`}
+          style={{ willChange: 'transform, opacity' }}
+        >
+          {word}
         </span>
       ))}
     </Tag>
